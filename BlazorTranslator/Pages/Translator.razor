@@ -2,32 +2,41 @@
 @inherits TranslatorBase
 @using BlazorTranslator.Models
 
-<h2>Multilanguage translator using Azure Translator Service</h2>
-<hr />
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <select class="form-control" @bind="inputLanguage">
-                <option value="">-- Select input language --</option>
-                @foreach (KeyValuePair<string, LanguageDetails> language in LanguageList)
-                {
-                    <option value="@language.Key">@language.Value.Name</option>
-                }
-            </select>
-            <textarea placeholder="Enter text to translate" class="form-control translation-box" rows="5" @bind="@inputText"></textarea>
+
+
+
+<div style="position : absolute ; top:0 ; margin-left : 350px">
+    <h3>Multilanguage translator using hundrend different languages....................</h3>
+    <hr />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control" @bind="inputLanguage">
+                    <option value="">-- Select input language --</option>
+                    @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
+                    {
+        <option value="@lang.Key">@lang.Value.Name</option>
+}
+                </select>
+                <textarea placeholder="Enter text to translate" class="form-control translation-box" rows="5" @bind="@inputText"></textarea>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" @onchange="SelectLanguage">
+                    <option value="">-- Select target language --</option>
+                    @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
+                    {
+        <option value="@lang.Key">@lang.Value.Name</option>
+}
+                </select>
+                <textarea disabled class="form-control translation-box" rows="5">@outputText</textarea>
+            </div>
         </div>
-        <div class="col-md-6">
-            <select class="form-control" @onchange="SelectLanguage">
-                <option value="">-- Select target language --</option>
-                @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
-                {
-                    <option value="@lang.Key">@lang.Value.Name</option>
-                }
-            </select>
-            <textarea disabled class="form-control translation-box" rows="5">@outputText</textarea>
+        <div class="text-center">
+            <button class="btn btn-primary btn-lg" @onclick="Translate">Translate</button>
         </div>
-    </div>
-    <div class="text-center">
-        <button class="btn btn-primary btn-lg" @onclick="Translate">Translate</button>
     </div>
 </div>
+
+
+
