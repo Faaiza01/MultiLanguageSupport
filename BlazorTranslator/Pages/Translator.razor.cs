@@ -45,5 +45,24 @@ namespace BlazorTranslator.Pages
                 }
             }
         }
+
+        protected async Task<string> Translate(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                TranslationResult[] translations = await translationService.GetTranslatation(text, outputLanguage);
+
+                if (translations != null)
+                {
+                    outputText = translations[0].Translations[0].Text;
+                    inputLanguage = translations[0].DetectedLanguage.Language;
+                }
+                else
+                {
+                    outputText = "An error occurred in translation. Please try again.";
+                }
+            }
+            return outputText;
+        }
     }
 }

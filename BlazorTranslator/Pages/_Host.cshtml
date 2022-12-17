@@ -34,3 +34,16 @@
     <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
+
+<script>
+    function getSelectedText() {      
+        return window.getSelection().toString();
+    }
+
+    function showSelectedText(result) {
+        var selection = window.getSelection().toString();
+        if (selection) {
+            alert(result);
+        }
+    }
+</script>
