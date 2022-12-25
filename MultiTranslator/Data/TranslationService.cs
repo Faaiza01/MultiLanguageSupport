@@ -1,11 +1,11 @@
-﻿using BlazorTranslator.Models;
+﻿using MultiTranslator.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorTranslator.Data
+namespace MultiTranslator.Data
 {
     public class TranslationService
     {

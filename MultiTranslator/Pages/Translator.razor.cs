@@ -1,10 +1,10 @@
-﻿using BlazorTranslator.Data;
-using BlazorTranslator.Models;
+﻿using MultiTranslator.Data;
+using MultiTranslator.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorTranslator.Pages
+namespace MultiTranslator.Pages
 {
     public class TranslatorBase : ComponentBase
     {

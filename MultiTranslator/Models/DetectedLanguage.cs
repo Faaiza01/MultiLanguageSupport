@@ -1,4 +1,4 @@
-﻿namespace BlazorTranslator.Models
+﻿namespace MultiTranslator.Models
 {
     public class DetectedLanguage
     {

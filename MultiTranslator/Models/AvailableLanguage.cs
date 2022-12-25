@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorTranslator.Models
+namespace MultiTranslator.Models
 {
     public class AvailableLanguage
     {

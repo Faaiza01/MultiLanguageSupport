@@ -1,6 +1,6 @@
 ﻿@page "/"
 @inherits TranslatorBase
-@using BlazorTranslator.Models
+@using MultiTranslator.Models
 @inject IJSRuntime js
 
 
@@ -44,4 +44,4 @@
         await js.InvokeAsync<string>("showSelectedText", $"{SelectedTextTranslation}");
     } }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@*<SurveyPrompt Title="How is Blazor working for you?" />*@
