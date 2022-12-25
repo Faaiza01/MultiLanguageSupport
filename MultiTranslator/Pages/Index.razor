@@ -3,35 +3,124 @@
 @using MultiTranslator.Models
 @inject IJSRuntime js
 
+    <style>
+        .card {
+            padding: 1rem;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
 
-<div style="position : absolute ; top:0 ; margin-left : 350px">
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .container {
+            padding: 2px 16px;
+        }
+        :root {
+            --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+            --gray: #34495e;
+            --darkgray: #2c3e50;
+        }
+
+        select {
+            /* Reset Select */
+            appearance: none;
+            outline: 0;
+            border: 0;
+            box-shadow: none;
+            flex: 1;
+            padding: 0 1em;
+            color: #0e0e0e;
+            background-color: #dadada99;
+            background-image: none;
+            cursor: pointer;
+        }
+            /* Remove IE arrow */
+            select::-ms-expand {
+                display: none;
+            }
+        /* Custom Select wrapper */
+        .select {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 3em;
+            border-radius: .25em;
+            overflow: hidden;
+        }
+            /* Arrow */
+            .select::after {
+                content: '\25BC';
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 1em;
+                background-color: #dadada99;
+                transition: .25s all ease;
+                pointer-events: none;
+            }
+            /* Transition */
+            .select:hover::after {
+                color: #f39c12;
+            }
+
+    </style>
+
+    
+
+<div style="position : absolute ; top:0 ; margin-left : 230px ; padding: 2rem">
   
     <div class="container">
-                <select class="form-control" @onchange="SelectLanguage">
-                    <option value="">-- Select target language --</option>
-                    @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
-                    {
-                      <option value="@lang.Key">@lang.Value.Name</option>}
-                </select>
-                @*<textarea disabled class="form-control translation-box" rows="5">@outputText</textarea>*@  
-    <p @onmouseup="@GetSelectedText">
-        Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.
-        Most people infected with the virus will experience mild to moderate respiratory illness
-        and recover without requiring special treatment. However, some will become seriously ill
-        and require medical attention. Older people and those with underlying medical conditions
-        like cardiovascular disease, diabetes, chronic respiratory disease, or cancer are more
-        likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill or
-        die at any age. The best way to prevent and slow down transmission is to be well informed about
-        the disease and how the virus spreads. Protect yourself and others from infection by staying at
-        least 1 metre apart from others, wearing a properly fitted mask, and washing your hands or using
-        an alcohol-based rub frequently. Get vaccinated when it’s your turn and follow local guidance.
-        The virus can spread from an infected person’s mouth or nose in small liquid particles when they
-        cough, sneeze, speak, sing or breathe. These particles range from larger respiratory droplets to
-        smaller aerosols. It is important to practice respiratory etiquette, for example by coughing into
-        a flexed elbow, and to stay home and self-isolate until you recover if you feel unwell.
-    </p>
+
+        <div class="select">
+
+            <select  @onchange="SelectLanguage">
+                <option value="">-- Select target language --</option>
+                @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
+                {
+                    <option value="@lang.Key">@lang.Value.Name</option>
+                }
+            </select>
+            </div>
+            <div class="card">
+                <div class="container">
+                    <p @onmouseup="@GetSelectedText">
+                        Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.
+                        Most people infected with the virus will experience mild to moderate respiratory illness
+                        and recover without requiring special treatment. However, some will become seriously ill
+                        and require medical attention. Older people and those with underlying medical conditions
+                        like cardiovascular disease, diabetes, chronic respiratory disease, or cancer are more
+                        likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill or
+                        die at any age. The best way to prevent and slow down transmission is to be well informed about
+                        the disease and how the virus spreads. Protect yourself and others from infection by staying at
+                        least 1 metre apart from others, wearing a properly fitted mask, and washing your hands or using
+                        an alcohol-based rub frequently. Get vaccinated when it’s your turn and follow local guidance.
+                        The virus can spread from an infected person’s mouth or nose in small liquid particles when they
+                        cough, sneeze, speak, sing or breathe. These particles range from larger respiratory droplets to
+                        smaller aerosols. It is important to practice respiratory etiquette, for example by coughing into
+                        a flexed elbow, and to stay home and self-isolate until you recover if you feel unwell.
+
+                        Today the European Union’s Health Emergency Preparedness Authority (HERA) and the World Health Organization (WHO) initiated a new partnership with a € 15 million allocation under the EU4Health programme to boost capacities at national, regional, and global levels for better preparedness for and response to health emergencies.
+
+                        In the framework of this partnership, HERA will fund four global initiatives to support:
+
+                        Epidemic and pandemic intelligence, access to and sharing of data and analytics through the WHO Hub for Pandemic and Epidemic Preparedness to assist decision-making with regards to health emergencies preparedness and response (€ 4 million);
+                        The development of new medical countermeasures for tackling antimicrobial resistance (AMR), notably the development of antibiotics efficient against resistant pathogens that pose the greatest threat to health. This action would ensure sustainable access to AMR treatments and promote their responsible use and affordability, while also driving research and prioritization of the search for new antimicrobials (€ 8 million);
+                        The scaling up of national capacities for SARS-CoV-2 & Emerging Pathogens detection & genomic surveillance in Africa (€ 2 million); and
+                        The COVID-19 Technology Access Pool (C-TAP) to ensure the fastest, most coordinated, and successful global effort to develop and facilitate access to technologies to fight COVID-19 (€ 1 million).
+
+
+                       
+                    </p>
+                </div>
+            </div>
+            @*<textarea disabled class="form-control translation-box" rows="5">@outputText</textarea>*@
+
+        </div>
     </div>
-</div>
 
 @*<p style="margin-left: 350px">You highlighted: @SelectedText</p>*@
 @code { public string SelectedText { get; set; }

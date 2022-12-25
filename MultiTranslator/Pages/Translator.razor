@@ -2,36 +2,105 @@
 @inherits TranslatorBase
 @using MultiTranslator.Models
 
+<style>
+    .card {
+        padding: 1rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        transition: 0.3s;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+   /* .container {
+        padding: 2px 16px;
+    }*/
+
+    :root {
+        --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f);
+        --gray: #34495e;
+        --darkgray: #2c3e50;
+    }
+
+    select {
+        /* Reset Select */
+        appearance: none;
+        outline: 0;
+        border: 0;
+        box-shadow: none;
+        flex: 1;
+        padding: 0 1em;
+        color: #0e0e0e;
+        background-color: #dadada99;
+        background-image: none;
+        cursor: pointer;
+    }
+        /* Remove IE arrow */
+        select::-ms-expand {
+            display: none;
+        }
+    /* Custom Select wrapper */
+    .select {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 3em;
+        border-radius: .25em;
+        overflow: hidden;
+    }
+        /* Arrow */
+        .select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1em;
+            background-color: #dadada99;
+            transition: .25s all ease;
+            pointer-events: none;
+        }
+        /* Transition */
+        .select:hover::after {
+            color: #f39c12;
+        }
+</style>
 
 
-
-<div style="position : absolute ; top:0 ; margin-left : 350px">
-    <h3>Multilanguage translator using hundrend different languages....................</h3>
+<div style="position: absolute; top: 0; margin-left: 230px; padding: 2rem; width: 80%">
+    <h3 style="text-align:center">Multilanguage translator using hundrend different languages....................</h3>
     <hr />
 
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <select class="form-control" @bind="inputLanguage">
-                    <option value="">-- Select input language --</option>
-                    @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
-                    {
-        <option value="@lang.Key">@lang.Value.Name</option>
+                <div class="select">
+                    <select @bind="inputLanguage">
+                        <option value="">-- Select input language --</option>
+                        @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
+                        {
+                <option value="@lang.Key">@lang.Value.Name</option>
 }
-                </select>
+                    </select>
+                </div>
+               
                 <textarea placeholder="Enter text to translate" class="form-control translation-box" rows="5" @bind="@inputText"></textarea>
             </div>
             <div class="col-md-6">
-                <select class="form-control" @onchange="SelectLanguage">
-                    <option value="">-- Select target language --</option>
-                    @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
-                    {
-        <option value="@lang.Key">@lang.Value.Name</option>
-}
-                </select>
+                <div class="select">
+                    <select @onchange="SelectLanguage">
+                        <option value="">-- Select target language --</option>
+                        @foreach (KeyValuePair<string, LanguageDetails> lang in LanguageList)
+                        {
+            <option value="@lang.Key">@lang.Value.Name</option>}
+                    </select>
+                </div>
+
                 <textarea disabled class="form-control translation-box" rows="5">@outputText</textarea>
             </div>
-        </div>
+            </div>
         <div class="text-center">
             <button class="btn btn-primary btn-lg" @onclick="Translate">Translate</button>
         </div>
